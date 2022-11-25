@@ -16,10 +16,14 @@ function SalesCard() {
 
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/sales`).then((response) => {
+
+      const dmin =mindate.toISOString().slice(0,10);
+      const dmax =maxdate.toISOString().slice(0,10);
+
+    axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`).then((response) => {
       setSales(response.data.content)
     });
-  }, []);
+  }, [mindate,maxdate]);
 
   return (
     <div className="dsmeta-card">
